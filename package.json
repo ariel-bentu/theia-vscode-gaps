@@ -1,0 +1,100 @@
+{
+	"name": "bugs",
+	"displayName": "bugs",
+	"description": "Gaps between vscode and Theia",
+	"version": "0.0.1",
+	"publisher": "ariel-bentu",
+	"engines": {
+		"vscode": "^1.33.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:bug.Start",
+		"workspaceContains:**/bugs.yaml",
+		"onView:BugsTree"
+
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"Bugs": [
+				{
+					"id": "bugs",
+					"title": "Bugs Explorer",
+					"icon": "resources/dark/bugs.svg"
+				}
+			]
+		},
+		"views": {
+			"bugs": [
+				{
+					"id": "BugsTree",
+					"name": "Bug Tree"
+				}
+			]
+		},
+		"menus": {
+			"view/item/context": [
+				{
+					"command": "bug1",
+					"when": "view == BugsTree",
+					"group":"inline"
+				},
+				{
+					"command": "bug2",
+					"when": "view == BugsTree"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "bug.Start",
+				"title": "Bugs: Start",
+				"icon": {
+					"light": "resources/light/bug.svg",
+					"dark": "resources/dark/bug.svg"
+				}
+			},
+			{
+				"command": "bug1",
+				"title": "Bug 1",
+				"icon": {
+					"light": "resources/light/bug.svg",
+					"dark": "resources/dark/bug.svg"
+				}
+			},
+			{
+				"command": "bug2",
+				"title": "Bug 2",
+				"icon": {
+					"light": "resources/light/bug.svg",
+					"dark": "resources/dark/bug.svg"
+				}
+			},
+			{
+				"command": "lunch.config.get",
+				"title": "BUG: Find Launch Config named test1"
+			},
+			{
+				"command": "lunch.config.create",
+				"title": "BUG: Create Launch Config named test2"
+			}
+		]
+	},	
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"tslint": "^5.12.1",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
+	}
+}
