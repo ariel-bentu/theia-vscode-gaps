@@ -14,7 +14,6 @@
 		"onCommand:bug.Start",
 		"workspaceContains:**/bugs.yaml",
 		"onView:BugsTree"
-
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -40,7 +39,7 @@
 				{
 					"command": "bug1",
 					"when": "view == BugsTree",
-					"group":"inline"
+					"group": "inline"
 				},
 				{
 					"command": "bug2",
@@ -51,11 +50,7 @@
 		"commands": [
 			{
 				"command": "bug.Start",
-				"title": "Bugs: Start",
-				"icon": {
-					"light": "resources/light/bug.svg",
-					"dark": "resources/dark/bug.svg"
-				}
+				"title": "Bugs: Start"
 			},
 			{
 				"command": "bug1",
@@ -82,7 +77,7 @@
 				"title": "BUG: Create Launch Config named test2"
 			}
 		]
-	},	
+	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
