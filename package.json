@@ -13,7 +13,9 @@
 	"activationEvents": [
 		"onCommand:bug.Start",
 		"workspaceContains:**/bugs.yaml",
-		"onView:BugsTree"
+		"onView:BugsTree",
+		"onCommand:settings.view",
+		"onCommand:picker.many"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -35,6 +37,12 @@
 			]
 		},
 		"menus": {
+			"explorer/item/context": [
+				{
+					"command": "bug1",
+					"group": "inline"
+				}
+			],
 			"view/item/context": [
 				{
 					"command": "bug1",
@@ -42,16 +50,22 @@
 					"group": "inline"
 				},
 				{
-					"command": "bug2",
+					"command": "picker.many",
 					"when": "view == BugsTree"
+				}
+			],
+			"editor/title/context": [
+				{
+					"command": "bug1"
+				}
+			],
+			"editor/context": [
+				{
+					"command": "picker.many"
 				}
 			]
 		},
 		"commands": [
-			{
-				"command": "bug.Start",
-				"title": "Bugs: Start"
-			},
 			{
 				"command": "bug1",
 				"title": "Bug 1",
@@ -61,22 +75,38 @@
 				}
 			},
 			{
-				"command": "bug2",
-				"title": "Bug 2",
+				"command": "picker.many",
+				"title": "BUG: Picker many",
 				"icon": {
 					"light": "resources/light/bug.svg",
 					"dark": "resources/dark/bug.svg"
 				}
 			},
 			{
-				"command": "lunch.config.get",
-				"title": "BUG: Find Launch Config named test1"
-			},
-			{
-				"command": "lunch.config.create",
-				"title": "BUG: Create Launch Config named test2"
+				"command": "settings.view",
+				"title":"BUG: Show settings"
 			}
-		]
+		],
+		"configuration": {
+            "type": "object",
+			"title": "Test Settings",
+			"properties": {
+				"bugs.listOfbugs": {
+                    "type": "array",
+                    "title": "Bugs",
+                    "default": [ {"name":"bug1"}],
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "description": "bug name"
+							}
+						}
+					}
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
@@ -91,5 +121,8 @@
 		"tslint": "^5.12.1",
 		"@types/node": "^10.12.21",
 		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"figures": "^3.0.0"
 	}
 }
